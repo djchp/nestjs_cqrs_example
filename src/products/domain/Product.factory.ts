@@ -8,14 +8,8 @@ export class ProductFactory {
   constructor(private readonly writeRepository: ProductWriteRepository) {}
   create(name: string, price: number, stock: number) {
     const product = new Product(name, price, stock);
-    const newProd = this.writeRepository.create({
-      name: product.getName(),
-      stock: product.getStock(),
-      price: product.getPrice(),
-      id: product.getId(),
-    });
-    this.writeRepository.save(newProd);
-    product.apply(new ProductCreatedEvent(newProd.name));
+    this.writeRepository.save(product);
+    product.apply(new ProductCreatedEvent(product.getName()));
 
     return product;
   }

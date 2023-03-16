@@ -10,7 +10,7 @@ import { ProductCreatedEventHandler } from './events/Product-created-event.handl
 import { ProductsController } from './products.controller';
 
 @Module({
-  imports: [CqrsModule, TypeOrmModule.forFeature([ProductEntity])],
+  imports: [CqrsModule],
   providers: [
     ProductReadRepository,
     ProductWriteRepository,
